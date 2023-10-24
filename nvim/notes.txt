@@ -7,3 +7,7 @@ Set new fonts in gnome terminal
 ---- PHPACTOR ----
 install missing dependencies
 
+
+---- RIPGREP ----
+for fuzzy finder <leader>g
+sudo dnf install ripgrep -y
