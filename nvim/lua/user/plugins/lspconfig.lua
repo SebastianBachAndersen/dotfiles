@@ -39,7 +39,7 @@ return {
     -- })
 
     require('lspconfig').phpactor.setup({
-      -- capabilities = capabilities,
+      capabilities = capabilities,
       on_attach = on_attach,
       -- on_attach = function(client, bufnr)
       --   client.server_capabilities.completionProvider = false
