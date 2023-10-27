@@ -11,3 +11,8 @@ install missing dependencies
 ---- RIPGREP ----
 for fuzzy finder <leader>g
 sudo dnf install ripgrep -y
+
+---- LazyGit ----
+https://github.com/jesseduffield/lazygit#fedora-and-rhel
+sudo dnf copr enable atim/lazygit -y
+sudo dnf install lazygit
