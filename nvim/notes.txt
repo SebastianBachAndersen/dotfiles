@@ -16,3 +16,7 @@ sudo dnf install ripgrep -y
 https://github.com/jesseduffield/lazygit#fedora-and-rhel
 sudo dnf copr enable atim/lazygit -y
 sudo dnf install lazygit
+
+---- delta -----
+used for lazygit diff
+sudo dnf install git-delta
