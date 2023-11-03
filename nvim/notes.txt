@@ -20,3 +20,8 @@ sudo dnf install lazygit
 ---- delta -----
 used for lazygit diff
 sudo dnf install git-delta
+
+
+---- always how php syntax -----
+For delta to show php syntax highlighting, it needs to see the php opening tag to know it's php
+Use this link: https://github.com/dandavison/delta/issues/162#issuecomment-625952288 to always show php highlighting if it's a php file
