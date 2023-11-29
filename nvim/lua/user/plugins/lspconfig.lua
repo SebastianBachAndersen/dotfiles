@@ -48,8 +48,7 @@ return {
 
     require('lspconfig').phpactor.setup({
       capabilities = capabilities,
-      on_attach = on_attach,
-      -- on_attach = function(client, bufnr)
+      on_attach = function(client, bufnr)
       --   client.server_capabilities.completionProvider = false
       --   client.server_capabilities.hoverProvider = false
       --   client.server_capabilities.implementationProvider = false
@@ -62,9 +61,9 @@ return {
       --   client.server_capabilities.definitionProvider = false
       --   client.server_capabilities.documentHighlightProvider = false
       --   client.server_capabilities.documentSymbolProvider = false
-      --   client.server_capabilities.documentFormattingProvider = false
-      --   client.server_capabilities.documentRangeFormattingProvider = false
-      -- end,
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end,
       init_options = {
         ["language_server_phpstan.enabled"] = false,
         ["language_server_psalm.enabled"] = false,
@@ -134,7 +133,12 @@ return {
           condition = function(utils)
             return utils.root_has_file({'Cargo.toml'})
           end,
-        })
+        }),
+        null_ls.builtins.formatting.phpcsfixer.with({
+          condition = function(utils)
+              return not utils.root_has_file({ 'vendor/bin/pint' })
+          end,
+        }),
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
