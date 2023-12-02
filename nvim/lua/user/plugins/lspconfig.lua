@@ -7,6 +7,7 @@ return {
     'b0o/schemastore.nvim',
     { 'jose-elias-alvarez/null-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
     'jayp0521/mason-null-ls.nvim',
+    'rust-analyzer/rust-analyzer',
   },
   config = function()
     -- Setup Mason to automatically install LSP servers
@@ -37,6 +38,13 @@ return {
     --   end,
     --   capabilities = capabilities
     -- })
+    --
+
+    require('lspconfig').rust_analyzer.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filtetypes = {'rust'},
+    })
 
     require('lspconfig').phpactor.setup({
       capabilities = capabilities,
@@ -119,6 +127,11 @@ return {
         null_ls.builtins.formatting.prettier.with({
           condition = function(utils)
             return utils.root_has_file({ '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.js', 'prettier.config.js' })
+          end,
+        }),
+        null_ls.builtins.formatting.rustfmt.with({
+          condition = function(utils)
+            return utils.root_has_file({'Cargo.toml'})
           end,
         }),
         null_ls.builtins.formatting.phpcsfixer.with({
