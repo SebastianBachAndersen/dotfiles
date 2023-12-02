@@ -1,4 +1,28 @@
+[core]
+    pager = delta
+	editor = nvim
+
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+	guitool = nvimdiff
+
+[diff]
+    colorMoved = default
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
 [delta]
 	line-numbers = true
 	side-by-side = true
 	syntax-theme = Visual Studio Dark+
+[branch]
+	autoSetupMerge = always
+[push]
+	default = current
+[pull]
+	default = current
+	rebase = false
+	ff = only
