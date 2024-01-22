@@ -16,6 +16,24 @@ snippet prif "private method"
 		${0}
 	}
 
+snippet pubsf "public static method"
+	public static function ${1}(${2}): $3
+	{
+		${0}
+	}
+
+snippet prosf "protected static method"
+	protected static function ${1}(${2}): $3
+	{
+		${0}
+	}
+
+snippet prisf "private static method"
+	protected static function ${1}(${2}): $3
+	{
+		${0}
+	}
+
 snippet testt "test method (prefix)"
 	public function test_${1}()
 	{
@@ -28,3 +46,18 @@ snippet testa "test method (annotation)"
 	{
 		${0}
 	}
+
+snippet thr "throw new"
+    throw new ${0}
+
+snippet if "if statement"
+    if (${1}) {
+        ${0}
+    }
+
+snippet ifel "if else statement"
+    if (${1}) {
+        ${2}
+    } else {
+        ${0}
+    }
