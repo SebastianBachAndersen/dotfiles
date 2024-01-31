@@ -8,6 +8,8 @@ return {
     { 'jose-elias-alvarez/null-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
     'jayp0521/mason-null-ls.nvim',
     'rust-analyzer/rust-analyzer',
+    'pappasam/nginx-language-server',
+    'omnisharp/omnisharp-vim'
   },
   config = function()
     -- Setup Mason to automatically install LSP servers
@@ -46,6 +48,12 @@ return {
       filtetypes = {'rust'},
     })
 
+    require('lspconfig').nginx_language_server.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = {'nginx'},
+    })
+
     require('lspconfig').phpactor.setup({
       capabilities = capabilities,
       on_attach = function(client, bufnr)
@@ -65,7 +73,7 @@ return {
         client.server_capabilities.documentRangeFormattingProvider = false
       end,
       init_options = {
-        ["language_server_phpstan.enabled"] = false,
+        ["language_server_phpstan.enabled"] = true,
         ["language_server_psalm.enabled"] = false,
       },
       -- handlers = {
@@ -86,6 +94,11 @@ return {
       -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
       -- This drastically improves the responsiveness of diagnostic updates on change
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+    })
+
+    require('lspconfig').omnisharp.setup({
+      on_attach = on_attach,
+      capabilities = capabilities
     })
 
     -- Tailwind CSS
