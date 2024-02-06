@@ -1,3 +1,4 @@
+vim.g.skip_ts_context_commentstring_module = true
 vim.opt.cmdheight = 0
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4

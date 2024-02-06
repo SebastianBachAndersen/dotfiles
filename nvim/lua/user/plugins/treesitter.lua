@@ -44,7 +44,6 @@ return {
       'markdown',
       'passwd',
       'php',
-      'phpdoc',
       'python',
       'regex',
       'ruby',
@@ -65,9 +64,6 @@ return {
       enable = true,
       disable = { "yaml" }
     },
-    context_commentstring = {
-      enable = true,
-    },
     rainbow = {
       enable = true,
     },
@@ -86,6 +82,7 @@ return {
   },
   config = function (_, opts)
     require('nvim-treesitter.configs').setup(opts)
+    require('ts_context_commentstring').setup {}
 
     local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
     parser_config.blade = {
