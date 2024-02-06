@@ -44,6 +44,7 @@ return {
       'markdown',
       'passwd',
       'php',
+      'phpdoc',
       'python',
       'regex',
       'ruby',
