@@ -119,5 +119,13 @@ alias vi="nvim"
 alias vim="nvim"
 
 
-#eval "$(direnv hook zsh)"
-#source ~/.config/op/plugins.sh
+if command -v direnv &> /dev/null
+then
+	eval "$(direnv hook zsh)"
+fi
+
+
+onePasswordPluginPath=~/.config/op/plugins.sh
+if [ -f $onePasswordPluginPath ]; then
+	source $onePasswordPluginPath
+fi
