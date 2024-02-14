@@ -79,8 +79,6 @@ plugins=(
 )
 
 export ZSH_TMUX_DEFAULT_SESSION_NAME=home
-export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_AUTOQUIT=false
 
 source $ZSH/oh-my-zsh.sh
 
