@@ -118,9 +118,6 @@ export EDITOR=/usr/bin/nvim
 alias vi="nvim"
 alias vim="nvim"
 
-hello () {
-	echo "Hello world $1"
-}
 
 # load direnv if present
 if command -v direnv &> /dev/null
