@@ -79,8 +79,8 @@ plugins=(
 )
 
 export ZSH_TMUX_DEFAULT_SESSION_NAME=home
-export ZSH_TMUX_AUTOSTART=true
-export ZSH_TMUX_AUTOQUIT=false
+# export ZSH_TMUX_AUTOSTART=true
+# export ZSH_TMUX_AUTOQUIT=false
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,13 +118,18 @@ export EDITOR=/usr/bin/nvim
 alias vi="nvim"
 alias vim="nvim"
 
+hello () {
+	echo "Hello world $1"
+}
 
+# load direnv if present
 if command -v direnv &> /dev/null
 then
 	eval "$(direnv hook zsh)"
 fi
 
 
+# load 1password cli extension if present
 onePasswordPluginPath=~/.config/op/plugins.sh
 if [ -f $onePasswordPluginPath ]; then
 	source $onePasswordPluginPath

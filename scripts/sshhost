@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+remote=$(grep -P "^Host ([^*]+)$" $HOME/.ssh/config | sed 's/Host //' | fzf)
+
+# ssh $remote
+
+tmux rename-window $remote
+ssh $remote
+
