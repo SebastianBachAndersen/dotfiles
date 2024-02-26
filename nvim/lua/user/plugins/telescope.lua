@@ -1,3 +1,21 @@
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "TelescopeResults",
+	callback = function(ctx)
+		vim.api.nvim_buf_call(ctx.buf, function()
+			vim.fn.matchadd("TelescopeParent", "\t\t.*$")
+			vim.api.nvim_set_hl(0, "TelescopeParent", { link = "Comment" })
+		end)
+	end,
+})
+
+
+local function filenameFirst(_, path)
+	local tail = vim.fs.basename(path)
+	local parent = vim.fs.dirname(path)
+	if parent == "." then return tail end
+	return string.format("%s\t\t%s", tail, parent)
+end
+
 return {
   'nvim-telescope/telescope.nvim',
   dependencies = {
@@ -19,7 +37,7 @@ return {
 
     require('telescope').setup({
       defaults = {
-        path_display = { truncate = 1 },
+        path_display = filenameFirst,
         prompt_prefix = '   ',
         selection_caret = '  ',
         layout_config = {
@@ -62,10 +80,10 @@ return {
           prompt_title = 'History',
         },
         lsp_references = {
-          previewer = false,
+          previewer = true,
         },
         lsp_definitions = {
-          previewer = false,
+          previewer = true,
         },
         lsp_document_symbols = {
           symbol_width = 55,
