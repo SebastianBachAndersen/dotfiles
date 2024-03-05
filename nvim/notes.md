@@ -1,27 +1,29 @@
 
----- FONT fix -----
+# Font fix
 Download, unzip and copy to ~.local/share/fonts/FONTNAME/*
 fixed fonts: https://github.com/ryanoasis/nerd-fonts#option-2-release-archive-download
 Set new fonts in gnome terminal
 
----- PHPACTOR ----
+# Phpactor
 install missing dependencies
+## Instant reindex
+use following command to install filewatcher for phpactor: https://phpactor.readthedocs.io/en/master/reference/indexer.html#indexer
+    sudo dnf install inotify-tools
 
 
----- RIPGREP ----
+# Ripgrep
 for fuzzy finder <leader>g
 sudo dnf install ripgrep -y
 
----- LazyGit ----
+# LazyGit
 https://github.com/jesseduffield/lazygit#fedora-and-rhel
-sudo dnf copr enable atim/lazygit -y
-sudo dnf install lazygit
+    sudo dnf copr enable atim/lazygit -y
+    sudo dnf install lazygit
 
----- delta -----
+# Delta
 used for lazygit diff
-sudo dnf install git-delta
+    sudo dnf install git-delta
 
-
----- always how php syntax -----
+## Always how php syntax
 For delta to show php syntax highlighting, it needs to see the php opening tag to know it's php
 Use this link: https://github.com/dandavison/delta/issues/162#issuecomment-625952288 to always show php highlighting if it's a php file
