@@ -62,7 +62,7 @@ return {
     })
     require('lspconfig').tsserver.setup({
       on_attach = on_attach,
-      filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript' }
+      filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact' }
     })
 
     require('lspconfig').omnisharp.setup({
