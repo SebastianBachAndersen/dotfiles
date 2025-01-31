@@ -8,7 +8,7 @@ return {
     { 'jose-elias-alvarez/null-ls.nvim', dependencies = 'nvim-lua/plenary.nvim' },
     'jayp0521/mason-null-ls.nvim',
     'rust-analyzer/rust-analyzer',
-    'pappasam/nginx-language-server',
+    -- 'pappasam/nginx-language-server',
     'omnisharp/omnisharp-vim'
   },
   config = function()
@@ -28,11 +28,8 @@ return {
       filtetypes = {'rust'},
     })
 
-    require('lspconfig').nginx_language_server.setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-      filetypes = {'nginx'},
-    })
+    -- needs python to be installed 
+    -- require('lspconfig').nginx_language_server.setup({})
 
     require('lspconfig').phpactor.setup({
       capabilities = capabilities,
@@ -60,7 +57,7 @@ return {
       --   ['textDocument/publishDiagnostics'] = function() end
       -- }
     })
-    require('lspconfig').tsserver.setup({
+    require('lspconfig').ts_ls.setup({
       on_attach = on_attach,
       filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact' }
     })
