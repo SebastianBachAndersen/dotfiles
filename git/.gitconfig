@@ -1,0 +1,36 @@
+[core]
+    pager = delta
+	editor = nvim
+	attributesfile = /home/sebastian/.gitattributes
+
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+	guitool = nvimdiff
+	tool = nvimdiff
+
+[diff]
+    colorMoved = default
+[user]
+	name = Sebastian Bach Andersen
+	email = ostehandler@hotmail.dk
+	; signingkey =
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /opt/1Password/op-ssh-sign
+[commit]
+	gpgsign = true
+[delta]
+	line-numbers = true
+	side-by-side = true
+	syntax-theme = Visual Studio Dark+
+[branch]
+	autoSetupMerge = always
+[push]
+	default = current
+[pull]
+	default = current
+	rebase = false
+	ff = only
