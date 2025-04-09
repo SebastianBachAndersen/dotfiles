@@ -16,6 +16,7 @@
 	name = Sebastian Bach Andersen
 	email = ostehandler@hotmail.dk
 	; signingkey =
+	developer-initials = sa
 [gpg]
 	format = ssh
 [gpg "ssh"]

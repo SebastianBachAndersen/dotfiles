@@ -9,7 +9,6 @@ return {
     'jayp0521/mason-null-ls.nvim',
     'rust-analyzer/rust-analyzer',
     -- 'pappasam/nginx-language-server',
-    'omnisharp/omnisharp-vim'
   },
   config = function()
     -- Setup Mason to automatically install LSP servers
@@ -60,11 +59,6 @@ return {
     require('lspconfig').ts_ls.setup({
       on_attach = on_attach,
       filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact' }
-    })
-
-    require('lspconfig').omnisharp.setup({
-      on_attach = on_attach,
-      capabilities = capabilities
     })
 
     -- Tailwind CSS
