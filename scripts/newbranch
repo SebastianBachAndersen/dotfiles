@@ -1,0 +1,11 @@
+#!/usr/bin/pwsh
+
+$devloperInitials = @(git config --get user.developer-initials)
+
+$taskId = Read-Host "Enter task id"
+
+$message = Read-Host "Enter task description"
+
+$message = $message.replace(' ', '_')
+
+git checkout -b "$($devloperInitials)/$($taskId)_$($message)"
