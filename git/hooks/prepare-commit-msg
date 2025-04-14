@@ -4,9 +4,7 @@ COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
 SHA1=$3
 
-echo $COMMIT_SOURCE >> ~/commit_source.txt
-
-unhandledSources=("merge" "squash" "commit")
+unhandledSources=("merge" "squash" "commit" "message")
 
 if ! [[ -z $COMMIT_SOURCE ]] && [[ ${unhandledSources[@]} =~ $COMMIT_SOURCE ]]
 then
