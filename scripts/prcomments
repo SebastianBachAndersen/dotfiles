@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#todo: check for command line argument to destroy cache
+cacheLocation="/tmp/pullcomments"
+if [ ! -d $cacheLocation ]; then
+  mkdir $cacheLocation
+fi
+
+response=""
+
+github_request() {
+  path=$1
+
+  replacedPath=$(echo "$path" | sed "s/\//_/g")
+  cacheFilePath="${cacheLocation}/${replacedPath}.json"
+
+  if [ -f "$cacheFilePath" ]; then
+    response=$(cat $cacheFilePath)
+  else
+    curl -sL \
+      -H "Accept: application/vnd.github+json" \
+      -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      https://api.github.com$path > $cacheFilePath
+
+    response=$(cat $cacheFilePath)
+  fi
+}
+
+#todo: make common function to check for limits etc. Also common function to access cache
+
+github_request "/orgs/spysystem/repos"
+
+repo=$(echo $response | jq ".[].full_name" | sed "s/\"//g" | fzf)
+
+github_request "/repos/$repo/pulls?state=open&per_page=100"
+
+prJson=$(echo $response | jq -c ".[] | select(.user.login | . and contains(\"$(git config --get user.github-username)\")) | {number: .number, title: .title}")
+prName=$(echo $prJson | jq -c ".title" | sed "s/\"//g" | fzf)
+prNumber=$(echo $prJson | jq -c ". | select(.title | . and contains(\"$prName\")) | .number")
+
+github_request "/repos/$repo/pulls/$prNumber/comments?per_page=100&sort=created&direction=asc"
+
+
+echo $response | jq -c '.[] | {comment: .body, commit: .original_commit_id}'
