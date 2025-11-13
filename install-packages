@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#TODO: install remi repository
+
+sudo dnf install -y \
+	tmux \
+	fzf \
+	php \
+	tmux \
+	inotify-tools \
+	nvim \
+	delta \
+	virt-manager \
+	ripgrep \
+	cpp
+	
+
