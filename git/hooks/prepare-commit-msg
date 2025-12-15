@@ -1,21 +1,36 @@
 #!/usr/bin/sh
 
+
 COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
 SHA1=$3
 
+
 unhandledSources=("merge" "squash" "commit" "message")
+
 
 if ! [[ -z $COMMIT_SOURCE ]] && [[ ${unhandledSources[@]} =~ $COMMIT_SOURCE ]]
 then
     exit 0
 fi
 
+
 taskId=$(git rev-parse --abbrev-ref HEAD | awk -F "[/_]" '{print $2}')
+
+
+if [ -z $taskId ]
+then
+    echo "Could not get a task id, input manually"
+    read -p "Task ID: " taskId
+fi
+
 
 action=$(echo "BUGFIX, FEATURE, CLEANUP, REFACTOR, INSPECTIONS" | sed "s/, /\n/g" | fzf)
 
+
 commitMessage="#${taskId}: [${action}] "
+
 
 origMessage=$(cat $COMMIT_MSG_FILE)
 echo "${commitMessage}${origMessage}" > $COMMIT_MSG_FILE
+
