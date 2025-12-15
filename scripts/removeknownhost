@@ -1,0 +1,20 @@
+#!/bin/bash
+
+known_hosts_file="$HOME/.ssh/known_hosts"
+
+
+if [ ! -e ${known_hosts_file} ]; then
+	echo "$known_hosts_file not found"
+	exit 1
+fi
+
+knownHostToDelete=$(cat ${known_hosts_file} | sed  -nr 's/(.*) (.*) .*/\1/p' | sort -u | fzf --tmux center --header "known_hosts entry to delete")
+
+if [ -z $knownHostToDelete ]; then
+	echo "No host chosen"
+	exit 1
+fi
+
+sed -i "/${knownHostToDelete}*/d" ${known_hosts_file}
+
+
