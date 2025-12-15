@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-remote=$(grep -P "^Host ([^*]+)$" $HOME/.ssh/config | sed 's/Host //' | fzf)
+remote=$(grep -P "^Host ([^*]+)$" $HOME/.ssh/config | sed 's/Host //' | fzf --tmux center)
 
 # ssh $remote
 
